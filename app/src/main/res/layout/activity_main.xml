@@ -5,27 +5,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
-    android:layout_weight="1"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:padding="10dp"
+        android:text="2455"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        android:gravity="end"
+        android:layout_marginBottom="10dp"
         android:textSize="30sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@id/infoTextView"
-        android:enabled="false"
-        android:gravity="bottom"
-        android:lines="2"
-        android:maxLines="2"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="45655554"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        android:gravity="end"
+        android:textSize="60sp" />
     <Button
         android:id="@+id/reset"
         android:layout_width="75dp"

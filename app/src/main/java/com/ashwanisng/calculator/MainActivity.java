@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Button clear;
     private Button reset;
     private Button equal;
-    private EditText edit;
+    private TextView edit;
     private TextView info;
     private final char ADDITION = '+';
     private final char SUBTRACTION = '-';
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private final char EQUAL = '0';
 
     private char ACTION;
+    String process;
 
 //    declaring two variable
 
@@ -57,8 +58,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-//        setup UI
-        setUpView();
+        zero = findViewById(R.id.zero);
+        one = findViewById(R.id.one);
+        two = findViewById(R.id.two);
+        three = findViewById(R.id.three);
+        four = findViewById(R.id.four);
+        five = findViewById(R.id.five);
+        six = findViewById(R.id.six);
+        seven = findViewById(R.id.seven);
+        eight = findViewById(R.id.eight);
+        nine = findViewById(R.id.nine);
+        dot = findViewById(R.id.point);
+        add = findViewById(R.id.add);
+        minus = findViewById(R.id.minus);
+        multiply = findViewById(R.id.multiply);
+        divide = findViewById(R.id.divide);
+        percentage = findViewById(R.id.percent);
+        equal = findViewById(R.id.equal);
+        reset = findViewById(R.id.reset);
+        info = findViewById(R.id.infoTextView);
+        edit = findViewById(R.id.editText);
 
 //        calling setOn clickListenerView
 
@@ -66,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "0");
+                process = edit.getText().toString();
+                edit.setText(process + "0");
 
             }
         });
@@ -75,150 +95,132 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "1");
-
+                process = edit.getText().toString();
+                edit.setText(process + "1");
             }
         });
 
         two.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "2");
-
+                process = edit.getText().toString();
+                edit.setText(process + "2");
             }
         });
 
         three.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "3");
-
+                process = edit.getText().toString();
+                edit.setText(process + "3");
             }
         });
 
         four.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "4");
-
+                process = edit.getText().toString();
+                edit.setText(process + "4");
             }
         });
 
         five.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "5");
-
+                process = edit.getText().toString();
+                edit.setText(process + "5");
             }
         });
 
         six.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "6");
-
+                process = edit.getText().toString();
+                edit.setText(process + "6");
             }
         });
 
         seven.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "7");
-
+                process = edit.getText().toString();
+                edit.setText(process + "7");
             }
         });
 
         eight.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "8");
-
+                process = edit.getText().toString();
+                edit.setText(process + "8");
             }
         });
 
         nine.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                edit.setText(edit.getText().toString() + "9");
-
+                process = edit.getText().toString();
+                edit.setText(process + "9");
             }
         });
 
         add.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 compute();
                 ACTION = ADDITION;
-                edit.setText(String.valueOf(value1) + "+");
-            }
-        });
-
-        add.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                compute();
-                ACTION = ADDITION;
-                info.setText(String.valueOf(value1) + "+");
+                process = edit.getText().toString();
+                edit.setText(process + "+");
                 edit.setText(null);
             }
         });
 
+
         minus.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 compute();
                 ACTION = SUBTRACTION;
-                info.setText(String.valueOf(value1) + "-");
+                process = edit.getText().toString();
+                edit.setText(process + "-");
                 edit.setText(null);
             }
         });
 
         multiply.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 compute();
                 ACTION = MULTIPLICATION;
-                info.setText(String.valueOf(value1) + "*");
+                process = edit.getText().toString();
+                edit.setText(process + "x");
                 edit.setText(null);
             }
         });
 
         divide.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 compute();
                 ACTION = DIVISION;
-                info.setText(String.valueOf(value1) + "/");
+                process = edit.getText().toString();
+                edit.setText(process + "/");
                 edit.setText(null);
             }
         });
 
         percentage.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 compute();
                 ACTION = PERCENTAGE;
-                info.setText(String.valueOf(value1) + "%");
+                process = edit.getText().toString();
+                edit.setText(process + "%");
                 edit.setText(null);
             }
         });
 
         equal.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 compute();
@@ -239,33 +241,27 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     value1 = Double.NaN;
                     value2 = Double.NaN;
-                    edit.setText(null);
-                    info.setText(null);
+                    edit.setText("");
+                    info.setText("");
                 }
             }
         });
+        dot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                process = edit.getText().toString();
+                edit.setText(process + ".");            }
+        });
 
-    }
-
-    private void setUpView(){
-
-        zero = (Button) findViewById(R.id.zero);
-        one = (Button) findViewById(R.id.one);
-        two = (Button) findViewById(R.id.two);
-        three = (Button) findViewById(R.id.three);
-        four = (Button) findViewById(R.id.four);
-        five = (Button) findViewById(R.id.five);
-        six = (Button) findViewById(R.id.six);
-        seven = (Button) findViewById(R.id.seven);
-        eight = (Button) findViewById(R.id.eight);
-        nine = (Button) findViewById(R.id.nine);
-        dot = (Button) findViewById(R.id.point);
-        add = (Button) findViewById(R.id.add);
-        minus = (Button) findViewById(R.id.minus);
-        multiply = (Button) findViewById(R.id.multiply);
-        divide = (Button) findViewById(R.id.divide);
-        percentage = (Button) findViewById(R.id.percent);
-        equal = (Button) findViewById(R.id.equal);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                value1 =Double.NaN;
+                value2 = Double.NaN;
+                edit.setText("");
+                info.setText("");
+            }
+        });
 
     }
 
@@ -295,13 +291,16 @@ public class MainActivity extends AppCompatActivity {
                 case PERCENTAGE:
                     value1 = value1 /100;
                     break;
-
+                    
                 case EQUAL:
                     break;
             }
 
         }else {
-            value1 = Double.parseDouble(edit.getText().toString());
+            try {
+                value1 = Double.parseDouble(edit.getText().toString());
+            }
+            catch (Exception e){}
         }
 
     }
