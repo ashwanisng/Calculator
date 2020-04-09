@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -29,27 +31,25 @@ public class MainActivity extends AppCompatActivity {
     private Button minus;
     private Button divide;
     private Button multiply;
-    private Button percentage;
+    private Button power;
     private Button clear;
     private Button reset;
     private Button equal;
-    private TextView edit;
-    private TextView info;
+    private TextView tvInput;
+    private TextView tvOutput;
     private final char ADDITION = '+';
     private final char SUBTRACTION = '-';
     private final char MULTIPLICATION = '*';
     private final char DIVISION = '/';
-    private final char PERCENTAGE = '%';
+    private final char POWER = '^';
     private final char EQUAL = '0';
 
     private char ACTION;
-    String process;
 
 //    declaring two variable
 
     private double value1 = Double.NaN;
     private double value2;
-
 
 
     @Override
@@ -69,15 +69,16 @@ public class MainActivity extends AppCompatActivity {
         eight = findViewById(R.id.eight);
         nine = findViewById(R.id.nine);
         dot = findViewById(R.id.point);
-        add = findViewById(R.id.add);
+        add = findViewById(R.id.plus);
         minus = findViewById(R.id.minus);
         multiply = findViewById(R.id.multiply);
         divide = findViewById(R.id.divide);
-        percentage = findViewById(R.id.percent);
+        power = findViewById(R.id.power);
         equal = findViewById(R.id.equal);
         reset = findViewById(R.id.reset);
-        info = findViewById(R.id.infoTextView);
-        edit = findViewById(R.id.editText);
+        clear = findViewById(R.id.clear);
+        tvInput = findViewById(R.id.infoTextView);
+        tvOutput = findViewById(R.id.editText);
 
 //        calling setOn clickListenerView
 
@@ -85,9 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "0");
-
+                 tvInput.setText(tvInput.getText().toString() + "0");
             }
         });
 
@@ -95,95 +94,126 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "1");
+                tvInput.setText(tvInput.getText().toString() + "1");
+
             }
         });
 
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "2");
+                tvInput.setText(tvInput.getText().toString() + "2");
+
             }
         });
 
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "3");
+                tvInput.setText(tvInput.getText().toString() + "3");
+
             }
         });
 
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "4");
+                tvInput.setText(tvInput.getText().toString() + "4");
+
             }
         });
 
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "5");
+                tvInput.setText(tvInput.getText().toString() + "5");
+
             }
         });
 
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "6");
+                tvInput.setText(tvInput.getText().toString() + "6");
+
             }
         });
 
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "7");
+                tvInput.setText(tvInput.getText().toString() + "7");
+
             }
         });
 
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "8");
+                tvInput.setText(tvInput.getText().toString() + "8");
+
             }
         });
 
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + "9");
+                tvInput.setText(tvInput.getText().toString() + "9");
+
             }
         });
 
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tvInput.getText().length() > 0) {
+                    CharSequence name = tvInput.getText().toString();
+                    tvInput.setText(name.subSequence(0, name.length() - 1));
+                } else {
+                    value1 = Double.NaN;
+                    value2 = Double.NaN;
+                    tvInput.setText("");
+                    tvOutput.setText("");
+                }
+            }
+        });
+
+        dot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvInput.setText(tvInput.getText().toString() + ".");
+
+            }
+        });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvOutput.setText("");
+                tvInput.setText("");
+            }
+        });
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 compute();
                 ACTION = ADDITION;
-                process = edit.getText().toString();
-                edit.setText(process + "+");
-                edit.setText(null);
+                tvOutput.setText(String.valueOf(value1) + "+");
+                tvInput.setText(null);
+
+
             }
         });
-
 
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 compute();
-                ACTION = SUBTRACTION;
-                process = edit.getText().toString();
-                edit.setText(process + "-");
-                edit.setText(null);
+                ACTION =SUBTRACTION;
+                tvOutput.setText(String.valueOf(value1) + "-");
+                tvInput.setText(null);
+
+
             }
         });
 
@@ -192,9 +222,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 compute();
                 ACTION = MULTIPLICATION;
-                process = edit.getText().toString();
-                edit.setText(process + "x");
-                edit.setText(null);
+                tvOutput.setText(String.valueOf(value1) + "x");
+                tvInput.setText(null);
+
+
             }
         });
 
@@ -203,20 +234,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 compute();
                 ACTION = DIVISION;
-                process = edit.getText().toString();
-                edit.setText(process + "/");
-                edit.setText(null);
+                tvOutput.setText(String.valueOf(value1) + "/");
+                tvInput.setText(null);
+
+
             }
         });
 
-        percentage.setOnClickListener(new View.OnClickListener() {
+        power.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 compute();
-                ACTION = PERCENTAGE;
-                process = edit.getText().toString();
-                edit.setText(process + "%");
-                edit.setText(null);
+                ACTION = POWER;
+                tvOutput.setText(String.valueOf(value1) + "^");
+                tvInput.setText(null);
+
             }
         });
 
@@ -224,86 +256,56 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 compute();
-                ACTION = EQUAL;
-                info.setText(info.getText().toString() + String.valueOf(value2) + "=" + String.valueOf(value1));
-                edit.setText(null);
+                ACTION =EQUAL;
+                tvOutput.setText(tvOutput.getText().toString() + String.valueOf(value2) + " = " + String.valueOf(value1));
+                tvInput.setText(null);
 
             }
         });
-
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edit.getText().length()> 0){
-                    CharSequence name = edit.getText().toString();
-                    edit.setText(name.subSequence(0, name.length()-1));
-                }
-                else {
-                    value1 = Double.NaN;
-                    value2 = Double.NaN;
-                    edit.setText("");
-                    info.setText("");
-                }
-            }
-        });
-        dot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                process = edit.getText().toString();
-                edit.setText(process + ".");            }
-        });
-
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                value1 =Double.NaN;
-                value2 = Double.NaN;
-                edit.setText("");
-                info.setText("");
-            }
-        });
-
     }
 
-    private void compute(){
 
-        if (!Double.isNaN(value1)){
-            value2 = Double.parseDouble(edit.getText().toString());
+        private void compute () {
+            if (!Double.isNaN(value1)) {
+                value2 = Double.parseDouble(tvInput.getText().toString());
 
-            switch (ACTION){
+                switch (ACTION) {
 
-                case ADDITION:
-                    value1 = value1 + value2;
-                    break;
+                    case ADDITION:
+                        value1 = value1 + value2;
+                        break;
 
-                case SUBTRACTION:
-                    value1 = value1 - value2;
-                    break;
+                    case SUBTRACTION:
+                        value1 = value1 - value2;
+                        break;
 
-                case MULTIPLICATION:
-                    value1 = value1 * value2;
-                    break;
+                    case MULTIPLICATION:
+                        value1 = value1 * value2;
+                        break;
 
-                case DIVISION:
-                    value1 = value1 / value2;
-                    break;
+                    case DIVISION:
+                        value1 = value1 / value2;
+                        break;
 
-                case PERCENTAGE:
-                    value1 = value1 /100;
-                    break;
-                    
-                case EQUAL:
-                    break;
+                    case POWER:
+                        value1 =  Math.pow(value1,value2);
+                        break;
+
+                    case EQUAL:
+                        break;
+                }
+
+            } else {
+                try {
+                    value1 = Double.parseDouble(tvInput.getText().toString());
+                } catch (Exception e) {
+                }
             }
 
-        }else {
-            try {
-                value1 = Double.parseDouble(edit.getText().toString());
-            }
-            catch (Exception e){}
         }
-
-    }
-
 }
+
+
+
+
 

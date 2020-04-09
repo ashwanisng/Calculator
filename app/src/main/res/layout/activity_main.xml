@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -14,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="2455"
+        android:text=""
         android:background="@android:color/black"
         android:textColor="@android:color/white"
         android:gravity="end"
@@ -26,9 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="45655554"
-        android:layout_marginTop="50dp"
+        android:text=""
         android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
         android:background="@android:color/black"
         android:textColor="@android:color/white"
         android:gravity="end"
@@ -257,11 +256,11 @@
     </Button>
 
     <Button
-        android:id="@+id/percentage"
+        android:id="@+id/power"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_below="@+id/one"
-        android:text="%"
+        android:text="^"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
@@ -277,7 +276,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="4dp"
-        android:layout_toRightOf="@+id/percentage"
+        android:layout_toRightOf="@+id/power"
         android:text="0"
         android:textSize="20sp">
     </Button>
