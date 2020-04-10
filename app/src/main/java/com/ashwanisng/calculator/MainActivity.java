@@ -264,31 +264,37 @@ public class MainActivity extends AppCompatActivity {
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                value2 = Double.parseDouble(tvInput.getText().toString() + "");
+                if (tvInput.length() ==0){
+                    tvInput.setText("");
+                }
+                else {
+                    value2 = Double.parseDouble(tvInput.getText().toString() + "");
 
-                if (ADDITION == true) {
-                    tvOutput.setText(value1 + value2 + "");
-                    ADDITION =false;
+                    if (ADDITION == true) {
+                        tvOutput.setText(value1 + value2 + "");
+                        ADDITION = false;
+                    }
+                    if (SUBTRACTION == true) {
+                        tvOutput.setText(value1 - value2 + "");
+                        SUBTRACTION = false;
+                    }
+                    if (MULTIPLICATION == true) {
+                        tvOutput.setText(value1 * value2 + "");
+                        MULTIPLICATION = false;
+                    }
+                    if (DIVISION == true) {
+                        tvOutput.setText(value1 / value2 + "");
+                        DIVISION = false;
+                    }
+                    if (POWER == true) {
+                        tvOutput.setText(Math.pow(value1, value2) + "");
+                        POWER = false;
+                    }
                 }
-                if (SUBTRACTION == true) {
-                    tvOutput.setText(value1 - value2 + "");
-                    SUBTRACTION =false;
                 }
-                if (MULTIPLICATION == true) {
-                    tvOutput.setText(value1 * value2 + "");
-                    MULTIPLICATION =false;
-                }
-                if (DIVISION == true) {
-                    tvOutput.setText(value1 / value2 + "");
-                    DIVISION = false;
-                }
-                if (POWER == true) {
-                    tvOutput.setText(Math.pow(value1, value2) + "");
-                    POWER =false;
-                }
+                });
             }
-            });
-        }
-}
+    }
+
 
 
