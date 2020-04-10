@@ -16,17 +16,17 @@
         android:text=""
         android:background="@android:color/black"
         android:textColor="@android:color/white"
-        android:gravity="end"
+        android:textAlignment="textEnd"
         android:layout_marginBottom="10dp"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:gravity="end" />
 
     <TextView
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:padding="10dp"
         android:text=""
-        android:layout_marginBottom="50dp"
         android:layout_marginTop="50dp"
         android:background="@android:color/black"
         android:textColor="@android:color/white"

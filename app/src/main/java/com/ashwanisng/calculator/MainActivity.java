@@ -37,18 +37,19 @@ public class MainActivity extends AppCompatActivity {
     private Button equal;
     private TextView tvInput;
     private TextView tvOutput;
-    private final char ADDITION = '+';
-    private final char SUBTRACTION = '-';
-    private final char MULTIPLICATION = '*';
-    private final char DIVISION = '/';
-    private final char POWER = '^';
-    private final char EQUAL = '0';
+    boolean ADDITION,SUBTRACTION, MULTIPLICATION, DIVISION, POWER;
+//    private final char ADDITION = '+';
+//    private final char SUBTRACTION = '-';
+//    private final char MULTIPLICATION = '*';
+//    private final char DIVISION = '/';
+//    private final char POWER = '^';
+//    private final char EQUAL = '0';
+//    double result = 0.0;
 
-    private char ACTION;
 
 //    declaring two variable
 
-    private double value1 = Double.NaN;
+    private double value1;
     private double value2;
 
 
@@ -83,10 +84,9 @@ public class MainActivity extends AppCompatActivity {
 //        calling setOn clickListenerView
 
         zero.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                 tvInput.setText(tvInput.getText().toString() + "0");
+                tvInput.setText(tvInput.getText().toString() + "0");
             }
         });
 
@@ -158,23 +158,8 @@ public class MainActivity extends AppCompatActivity {
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvInput.setText(tvInput.getText().toString() + "9");
+                tvInput.setText(tvInput.getText().toString()+ "9");
 
-            }
-        });
-
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (tvInput.getText().length() > 0) {
-                    CharSequence name = tvInput.getText().toString();
-                    tvInput.setText(name.subSequence(0, name.length() - 1));
-                } else {
-                    value1 = Double.NaN;
-                    value2 = Double.NaN;
-                    tvInput.setText("");
-                    tvOutput.setText("");
-                }
             }
         });
 
@@ -189,65 +174,89 @@ public class MainActivity extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvOutput.setText("");
-                tvInput.setText("");
+                tvOutput.setText(null);
+                tvInput.setText(null);
             }
         });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tvInput.getText().length() > 0) {
+                    CharSequence name = tvInput.getText();
+                    tvInput.setText(name.subSequence(0, name.length() - 1));
+                } else {
+                    tvInput.setText("");
+                    tvOutput.setText("");
+                }
+            }
+        });
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                compute();
-                ACTION = ADDITION;
-                tvOutput.setText(String.valueOf(value1) + "+");
-                tvInput.setText(null);
-
-
+                if (tvInput == null){
+                    tvInput.setText("");
+                }
+                else {
+                    value1 = Double.parseDouble(tvInput.getText().toString() + "");
+                    ADDITION= true;
+                    tvInput.setText(null);
+                }
             }
         });
-
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                compute();
-                ACTION =SUBTRACTION;
-                tvOutput.setText(String.valueOf(value1) + "-");
-                tvInput.setText(null);
-
-
+               if (tvInput == null){
+                   tvInput.setText("");
+               }else {
+                   value1 = Double.parseDouble(tvInput.getText().toString() + "");
+                   SUBTRACTION = true;
+                   tvInput.setText(null);
+               }
             }
         });
 
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                compute();
-                ACTION = MULTIPLICATION;
-                tvOutput.setText(String.valueOf(value1) + "x");
-                tvInput.setText(null);
-
-
+               if (tvInput == null){
+                   tvInput.setText("");
+               }
+               else {
+                   value1 = Double.parseDouble(tvInput.getText().toString() + " ");
+                   MULTIPLICATION = true;
+                   tvInput.setText(null);
+               }
             }
         });
 
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                compute();
-                ACTION = DIVISION;
-                tvOutput.setText(String.valueOf(value1) + "/");
-                tvInput.setText(null);
-
-
+                if (tvInput == null){
+                    tvInput.setText("");
+                }
+                else {
+                    value1 = Double.parseDouble(tvInput.getText().toString() + "");
+                    DIVISION = true;
+                    tvInput.setText(null);
+                }
             }
         });
 
         power.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                compute();
-                ACTION = POWER;
-                tvOutput.setText(String.valueOf(value1) + "^");
-                tvInput.setText(null);
+                if (tvInput == null){
+                    tvInput.setText("");
+                }
+                else {
+                    value1 = Double.parseDouble(tvInput.getText().toString() + " ");
+                    POWER = true;
+                    tvInput.setText(null);
+                }
 
             }
         });
@@ -255,57 +264,31 @@ public class MainActivity extends AppCompatActivity {
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                compute();
-                ACTION =EQUAL;
-                tvOutput.setText(tvOutput.getText().toString() + String.valueOf(value2) + " = " + String.valueOf(value1));
-                tvInput.setText(null);
+                value2 = Double.parseDouble(tvInput.getText().toString() + "");
 
-            }
-        });
-    }
-
-
-        private void compute () {
-            if (!Double.isNaN(value1)) {
-                value2 = Double.parseDouble(tvInput.getText().toString());
-
-                switch (ACTION) {
-
-                    case ADDITION:
-                        value1 = value1 + value2;
-                        break;
-
-                    case SUBTRACTION:
-                        value1 = value1 - value2;
-                        break;
-
-                    case MULTIPLICATION:
-                        value1 = value1 * value2;
-                        break;
-
-                    case DIVISION:
-                        value1 = value1 / value2;
-                        break;
-
-                    case POWER:
-                        value1 =  Math.pow(value1,value2);
-                        break;
-
-                    case EQUAL:
-                        break;
+                if (ADDITION == true) {
+                    tvOutput.setText(value1 + value2 + "");
+                    ADDITION =false;
                 }
-
-            } else {
-                try {
-                    value1 = Double.parseDouble(tvInput.getText().toString());
-                } catch (Exception e) {
+                if (SUBTRACTION == true) {
+                    tvOutput.setText(value1 - value2 + "");
+                    SUBTRACTION =false;
+                }
+                if (MULTIPLICATION == true) {
+                    tvOutput.setText(value1 * value2 + "");
+                    MULTIPLICATION =false;
+                }
+                if (DIVISION == true) {
+                    tvOutput.setText(value1 / value2 + "");
+                    DIVISION = false;
+                }
+                if (POWER == true) {
+                    tvOutput.setText(Math.pow(value1, value2) + "");
+                    POWER =false;
                 }
             }
-
+            });
         }
 }
-
-
-
 
 
