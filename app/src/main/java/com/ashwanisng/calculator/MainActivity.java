@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tvInput == null){
+                if (tvInput.length()==0){
                     tvInput.setText("");
                 }
                 else {
@@ -205,10 +205,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (tvInput == null){
+               if (tvInput.length()==0){
                    tvInput.setText("");
                }else {
                    value1 = Double.parseDouble(tvInput.getText().toString() + "");
@@ -221,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (tvInput == null){
+               if (tvInput.length() ==0){
                    tvInput.setText("");
                }
                else {
@@ -235,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tvInput == null){
+                if (tvInput.length() ==0){
                     tvInput.setText("");
                 }
                 else {
@@ -249,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         power.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tvInput == null){
+                if (tvInput.length() ==0){
                     tvInput.setText("");
                 }
                 else {
@@ -257,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
                     POWER = true;
                     tvInput.setText(null);
                 }
-
             }
         });
 
