@@ -1,12 +1,13 @@
 package com.ashwanisng.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
     private double value1;
     private double value2;
+    private double result;
+    private int inverted_button = 0;
 
 
     @Override
@@ -80,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
         clear = findViewById(R.id.clear);
         tvInput = findViewById(R.id.infoTextView);
         tvOutput = findViewById(R.id.editText);
+
+
+
 
 //        calling setOn clickListenerView
 
@@ -197,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (tvInput.length()==0){
                     tvInput.setText("");
+
                 }
                 else {
                     value1 = Double.parseDouble(tvInput.getText().toString() + "");
@@ -271,8 +278,8 @@ public class MainActivity extends AppCompatActivity {
                     value2 = Double.parseDouble(tvInput.getText().toString() + "");
 
                     if (ADDITION == true) {
-                        tvOutput.setText(value1 + value2 + "");
-                        ADDITION = false;
+                        tvOutput.setText(value1 + value2 + " ");
+                        ADDITION= false;
                     }
                     if (SUBTRACTION == true) {
                         tvOutput.setText(value1 - value2 + "");
@@ -294,7 +301,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 });
             }
-    }
+
+
+}
+
 
 
 
